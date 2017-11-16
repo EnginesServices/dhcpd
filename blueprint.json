@@ -15,8 +15,135 @@
         "level": "alpha",
         "patch": 0
       }
-    }
+    },
+    "software": {
+      "display": {
+        "title": "Dhcpd",
+        "label": "dhcp"
+      }
+    },
+    "timestamp": "2017-11-16T11:19:30+11:00"
   },
   "software": {
+    "base": {
+      "name": "dhcpd",
+      "publisher_namespace": "EnginesSystem",
+      "type_path": "dhcpd",
+      "service_handle_field": "subnet",
+      "parent_image": "engines/servicebase",
+      "deployment_type": "worker",
+      "memory": {
+        "required": 30,
+        "recommended": 32
+      },
+      "attach_post_build": true
+    },
+    "ports": [
+      {
+        "port": 67,
+        "external": 67,
+        "protocol": "udp"
+      }
+    ],
+    "actionators": [
+      {
+        "name": "show_leases",
+        "label": "Show Leases",
+        "return_type": "none"
+      }
+    ],
+    "configurators": [
+      {
+        "name": "dhcpd_settings",
+        "label": "dhcpd settings",
+        "enable_logging": true,
+        "variables": [
+          {
+            "name": "domain_name",
+            "value": "Engines_System(default_domain)",
+            "input": {
+              "type": "string",
+              "label": "Default Domain"
+            }
+          },
+          {
+            "name": "subnet  ",
+            "mandatory": true,
+            "input": {
+              "type": "string",
+              "label": "Subnet",
+              "hint": "x.x.x.x"
+            }
+          },
+          {
+            "name": "start",
+            "mandatory": true,
+            "input": {
+              "type": "string",
+              "label": "dhcp range start",
+              "hint": "x.x.x.x"
+            }
+          },
+          {
+            "name": "end",
+            "mandatory": true,
+            "input": {
+              "type": "string",
+              "label": "dhcp range end"
+            }
+          },
+          {
+            "name": "default_lease",
+            "value": "6000",
+            "mandatory": true,
+            "input": {
+              "type": "string",
+              "label": "Lease time"
+            }
+          },
+          {
+            "name": "default_gateway",
+            "value": "Engines_System(gateway)",
+            "mandatory": true,
+            "input": {
+              "type": "string",
+              "label": "Default Gateway",
+              "hint": "ip or host",
+              "placeholder": "x.x.x.x"
+            }
+          },
+          {
+            "name": "dns_server1 ",
+            "value": "Engines_System(engines_ip)",
+            "mandatory": true,
+            "input": {
+              "type": "string",
+              "label": "DNS Server 1",
+              "hint": "ip address",
+              "placeholder": "x.x.x.x"
+            }
+          },
+          {
+            "name": "dns_server2",
+            "value": "Engines_System(dns2)",
+            "input": {
+              "type": "string",
+              "label": "DNS Server 2",
+              "hint": "ip address",
+              "placeholder": "x.x.x.x"
+            }
+          },
+          {
+            "name": "netmask",
+            "value": "255.255.255.0",
+            "mandatory": true,
+            "input": {
+              "type": "string",
+              "label": "netmask"
+            }
+          }
+        ]
+      }
+    ]
   }
 }
