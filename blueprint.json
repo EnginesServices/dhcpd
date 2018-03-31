@@ -2,8 +2,8 @@
   "schema": {
     "type": "service_blueprint",
     "version": {
-      "major": 1,
-      "minor": 0
+      "major": 0,
+      "minor": 1
     },
     "origin": "Engines Developer Studio 0.2"
   },
@@ -22,7 +22,7 @@
         "label": "dhcp"
       }
     },
-    "timestamp": "2017-11-16T11:19:30+11:00"
+    "timestamp": "2018-03-31T12:32:30+11:00"
   },
   "software": {
     "base": {
@@ -35,13 +35,15 @@
       "memory": {
         "required": 30,
         "recommended": 32
-      },
+      }
+    },
+    "disposition": {
       "attach_post_build": true
     },
     "ports": [
       {
-        "port": 67,
-        "external": 67,
+        "port": "67",
+        "external": "67",
         "protocol": "udp"
       }
     ],
@@ -114,7 +116,7 @@
           },
           {
             "name": "dns_server1 ",
-            "value": "Engines_System(engines_ip)",
+            "value": "_Engines_System(engines_ip)",
             "mandatory": true,
             "input": {
               "type": "string",
